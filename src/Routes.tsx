@@ -8,6 +8,7 @@ import { Profile } from './pages/Dashboard/Sections/Profile'
 import { Settings } from './pages/Dashboard/Sections/Settings'
 import { GlobalStyle } from './styles/global'
 import { dark } from './styles/themes/dark';
+import { light } from './styles/themes/light';
 
 function AppRoutes() {
 
