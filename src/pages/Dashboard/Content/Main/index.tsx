@@ -1,10 +1,11 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
 import { MainContainer } from './styles'
 
 export const Main = () => {
   return (
     <MainContainer>
-      <h1>Main Dashboard</h1>
+      <Outlet />
     </MainContainer>
   )
 }
