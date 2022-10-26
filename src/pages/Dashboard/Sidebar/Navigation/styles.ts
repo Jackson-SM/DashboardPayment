@@ -16,9 +16,9 @@ export const LinkGroupComponent = styled.div`
 
   & .title {
     display: flex;
-    margin-left: 30px;
+    padding: 10px;
     span {
-      color: ${props => darken(0.3,props.theme.colors.text)};
+      color: ${props => darken(0.3, props.theme.colors.text)};
     }
   }
 `;

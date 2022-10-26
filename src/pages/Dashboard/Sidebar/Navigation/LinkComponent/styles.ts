@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import { Link, LinkProps } from 'react-router-dom';
-import { darken, lighten } from 'polished';
+import { darken, lighten, opacify, transparentize } from 'polished';
 
 type VariantsProps = {
   routed?: boolean;
 }
+type LinkComponentProps = LinkProps & VariantsProps;
 
-export const LinkComponentStyle = styled(Link)<LinkProps & VariantsProps>`
+export const LinkComponentStyle = styled(Link)<LinkComponentProps & VariantsProps>`
   text-decoration: none;
   color: ${props => darken(0.2, props.theme.colors.text)};
   width: 100%;
@@ -24,18 +25,19 @@ export const LinkComponentStyle = styled(Link)<LinkProps & VariantsProps>`
   padding: 10px;
 
   & svg {
-    width: 16px;
-    height: 16px;
+    width: 17px;
+    height: 17px;
     margin-right: 40px;
   }
 
   &:hover {
     color: ${props => props.theme.colors.secundary};
-    background: ${props => props.theme.theme === 'dark' ? lighten(0.07, props.theme.colors.background) : darken(0.01, props.theme.colors.background)};
+    background: ${props => transparentize(0.9, props.theme.colors.secundary)};
   }
 
   ${props => props.routed && `
     color: ${props.theme.colors.secundary};
+    background: ${transparentize(0.9, props.theme.colors.secundary)};
     padding-left: 20px;
 
     &:after {
@@ -45,6 +47,7 @@ export const LinkComponentStyle = styled(Link)<LinkProps & VariantsProps>`
 
       height: 100%;
       width: 3px;
+
 
       background: ${props.theme.colors.secundary};
 
