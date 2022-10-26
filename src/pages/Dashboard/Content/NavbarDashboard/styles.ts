@@ -12,7 +12,19 @@ export const NavbarDashboardContainer = styled.nav`
   background: ${props => lighten(0.05,props.theme.colors.background)};
 
   * .themed {
-    & s
+    background: ${props => transparentize(0.7,props.theme.colors.secundary)};
+    margin: 2px;
+    border-radius: 5px;
+    padding: 5px;
+
+    margin-left: 20px;
+
+    display: flex;
+    align-items: center;
+    & svg {
+      width: 16px;
+      height: 16px;
+    }
   }
 
   & .menu {
@@ -43,7 +55,7 @@ export const NavbarDashboardContainer = styled.nav`
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 10px;
+    padding: 20px;
     gap: 10px;
 
     & .notification-btn {
