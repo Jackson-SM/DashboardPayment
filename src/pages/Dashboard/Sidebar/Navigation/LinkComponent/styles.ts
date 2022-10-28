@@ -32,12 +32,12 @@ export const LinkComponentStyle = styled(Link)<LinkComponentProps & VariantsProp
 
   &:hover {
     color: ${props => props.theme.colors.secundary};
-    background: ${props => transparentize(0.9, props.theme.colors.secundary)};
+    background: ${props => `linear-gradient(to right,${transparentize(1,props.theme.colors.secundary)},${transparentize(0.8, props.theme.colors.secundary)})`};
   }
 
   ${props => props.routed && `
     color: ${props.theme.colors.secundary};
-    background: ${transparentize(0.9, props.theme.colors.secundary)};
+    background: ${`linear-gradient(to right,${transparentize(1,props.theme.colors.secundary)},${transparentize(0.8, props.theme.colors.secundary)})`};
     padding-left: 20px;
 
     &:after {
@@ -48,11 +48,12 @@ export const LinkComponentStyle = styled(Link)<LinkComponentProps & VariantsProp
       height: 100%;
       width: 3px;
 
+      background: ${transparentize(0.3, props.theme.colors.secundary)};
 
-      background: ${props.theme.colors.secundary};
+      border-radius: 40px;
 
       top: 0;
-      left: 0;
+      right: 0;
     }
   `}
 `;
