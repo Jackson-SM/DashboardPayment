@@ -7,7 +7,9 @@ export const DashboardSectionContainer = styled.div`
 
 export const CardContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 270px);
+
+  gap: 10px;
 `;
 
 export const ProgressContainer = styled.div`
@@ -39,12 +41,20 @@ export const AmountProgressContainer = styled.div`
 `;
 
 export const GraphicContainer = styled.div`
-  width: 600px;
+  width: auto;
   height: auto;
-
-  background: ${props => transparentize(0.95, props.theme.colors.tertiary)};
 
   border-radius: 10px;
 
+  display: flex;
+
+  gap: 10px;
+`;
+
+export const GraphicStyleContainer = styled.div`
+  background: ${props => transparentize(0.95, props.theme.colors.tertiary)};
+
   padding: 10px;
+
+  border-radius: 5px;
 `;

@@ -5,5 +5,9 @@ export const MainContainer = styled.main`
   
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 10px;
+
+  overflow-y: scroll;
+
+  height: 100%;
 `;

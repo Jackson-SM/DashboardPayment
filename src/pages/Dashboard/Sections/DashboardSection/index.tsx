@@ -1,13 +1,7 @@
 import React from 'react'
-import { BsBagCheckFill, BsEyeFill, BsFillPersonFill } from 'react-icons/bs'
+import { BsBank2, BsGraphUp, BsPersonFill } from 'react-icons/bs'
 
-import CircularProgress, { CircularProgressProps } from '@mui/material/CircularProgress';
-import Typography from '@mui/material/Typography';
-
-import { Card } from './Components/Card/Card'
-import { AmountProgressContainer, CardContainer, CircularContainer, DashboardSectionContainer, GraphicContainer } from './styles'
-import { CardLarge } from './Components/CardLarge';
-import { CardLargeContainer } from './Components/CardLarge/styles';
+import { CardContainer, GraphicContainer, GraphicStyleContainer } from './styles'
 
 
 import {
@@ -19,11 +13,15 @@ import {
   Title,
   Tooltip,
   Legend,
-  Filler
+  Filler,
+  ArcElement
 } from 'chart.js';
-import { Chart } from 'react-chartjs-2';
+import { Chart, Doughnut, Pie } from 'react-chartjs-2';
 import { transparentize } from 'polished';
 import { useTheme } from '../../../../hooks/useTheme';
+import { ProfitCard } from './Components/ProfitCard';
+import { Breadcrumb } from '../Components/Breadcrumb';
+import { DoughnutOptions, LineOptions } from '../ChartsConfig';
 
 export const DashboardSection = () => {
 
@@ -37,51 +35,9 @@ export const DashboardSection = () => {
     Title,
     Tooltip,
     Legend,
-    Filler
+    Filler,
+    ArcElement
   );
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'bottom' as const,
-        align: 'start',
-        labels: {
-          font: {
-            family: 'Noto Sans',
-            size: 10
-          }
-        }
-      },
-    },
-    scales: {
-      y: {
-        grid: {
-          drawOnChartArea: false,
-          drawBorder: false,
-        },
-        ticks: {
-          font: {
-            family: "Noto Sans",
-          }
-        },
-        min: 0,
-        max: 100
-      },
-      x: {
-        grid: {
-        },
-        ticks: {
-          font: {
-            family: "Noto Sans",
-          }
-        }
-      }
-    },
-    layout: {
-      autoPadding: true,
-    }
-  };
 
   const labelCreate = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   const dataCreate = {
@@ -89,39 +45,80 @@ export const DashboardSection = () => {
       10,13,24,46,65,70,93
     ],
     desorder: [
-      90,83,73,50,25,25,5
+      20,93,33,45,5,55,5
     ]
   }
 
   const data = {
-    labels: labelCreate.map(data => data),
+    labels: labelCreate,
     datasets: [
       {
         label: 'Profit Monetary',
-        data: dataCreate.facture.map(data => data),
-        borderColor: `${transparentize(0.1, theme.colors.tertiary)}`,
-        backgroundColor: `${transparentize(0.9, theme.colors.tertiary)}`,
+        data: dataCreate.facture,
+        borderColor: `${transparentize(0.1, theme.colors.primary)}`,
+        backgroundColor: `${transparentize(0.9, theme.colors.primary)}`,
         borderWidth: 1,
         fill: true,
       },
       {
-        label: 'Profit Desorder',
-        data: dataCreate.desorder.map(data => data),
-        borderColor: `${transparentize(0.1, theme.colors.secundary)}`,
-        backgroundColor: `${transparentize(0.9, theme.colors.secundary)}`,
+        label: 'Profit Monetary',
+        data: dataCreate.desorder,
+        borderColor: `${transparentize(0.1, 'orange')}`,
+        backgroundColor: `${transparentize(0.9, 'orange')}`,
         borderWidth: 1,
         fill: true,
       },
     ],
   }
 
+  const optionsProfit = {
+    prefix: true,
+    prefix_string: 'U$',
+    type: "money",
+
+    percentage: '2,86',
+    description: 'a last month',
+    profit: 25671,
+  }
+
   return (
     <>
-      <CardLargeContainer>
-        <CardLarge />
-      </CardLargeContainer>
+      <Breadcrumb />
+      <CardContainer>
+        <ProfitCard options={{
+          prefix_string: 'U$',
+      
+          percentage: '9,23',
+          description: 'Total users',
+          profit: 12901,
+        }} title="Users" icon={<BsPersonFill />} />
+
+        <ProfitCard options={{
+          prefix: true,
+          prefix_string: 'R$',
+          type: "money",
+      
+          percentage: '2,86',
+          description: 'Profit in last month',
+          profit: 125871,
+        }} title="Profit Monetary" icon={<BsBank2 />} />
+
+        <ProfitCard options={{
+          type: "percentage",
+      
+          percentage: '1,33',
+          description: 'a last month',
+          profit: 34,
+        }} title="Profit Month" icon={<BsGraphUp />} />
+
+      </CardContainer>
       <GraphicContainer>
-        <Chart type="line" options={options} data={data} />
+        <GraphicStyleContainer style={{ width: '550px' }}>
+          <Chart type="line" options={LineOptions} data={data} />
+        </GraphicStyleContainer>
+        <GraphicStyleContainer style={{ width: '270px' }}>
+          <Doughnut height={200} width={200} options={DoughnutOptions} data={data} />
+        </GraphicStyleContainer>
       </GraphicContainer>
     </>
   )
