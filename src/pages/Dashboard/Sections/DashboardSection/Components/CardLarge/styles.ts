@@ -29,7 +29,7 @@ export const CardLargeStyle = styled.div`
 
     & .amount {
       color: ${props => transparentize(0.15,'white')};
-      font-size: 32px;
+      font-size: 40px;
 
       display: flex;
       align-items: center;
